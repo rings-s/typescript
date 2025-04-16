@@ -1,4 +1,3 @@
-// typescript is not making your life terrible. it's just showing you how terrible your life already is.
 const menu = [
   { name: "Margherita", price: 8 },
   { name: "Pepperoni", price: 10 },
@@ -6,8 +5,8 @@ const menu = [
   { name: "Veggie", price: 9 },
 ];
 
-let cashInRegister = 100;
-let nextOrderId = 1;
+const cashInRegister = 100;
+const nextOrderId = 1;
 const orderQueue = [];
 
 function addNewPizza(pizzaObj) {
