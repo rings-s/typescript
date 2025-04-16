@@ -1,44 +1,32 @@
-// typescript is not making your life terrible. it's just showing you how terrible your life already is.
-const menu = [
-  { name: "Margherita", price: 8 },
-  { name: "Pepperoni", price: 10 },
-  { name: "Hawaiian", price: 10 },
-  { name: "Veggie", price: 9 },
-];
+// Basic Types
+let isDone: boolean = false; // Boolean - true/false values
+let decimal: number = 6; // Number - all numeric values
+let color: string = "blue"; // String - text values
+let list: number[] = [1, 2, 3]; // Array of numbers
+let tuple: [string, number] = ["hello", 10]; // Tuple - fixed-length array with defined types
+let x: any = 4; // Any - opt out of type checking
+let u: undefined = undefined; // Undefined - variable with no value assigned
+let n: null = null; // Null - variable with null value
 
-let cashInRegister = 100;
-let nextOrderId = 1;
-const orderQueue = [];
-
-function addNewPizza(pizzaObj) {
-  menu.push(pizzaObj);
+// Function with parameter and return type annotation
+function add(x: number, y: number): number {
+  return x + y;
 }
 
-function placeOrder(pizzaName) {
-  const selectedPizza = menu.find((pizzaObj) => pizzaObj.name === pizzaName);
-  cashInRegister += selectedPizza.price;
-  const newOrder = {
-    id: nextOrderId++,
-    pizza: selectedPizza,
-    status: "ordered",
-  };
-  orderQueue.push(newOrder);
-  return newOrder;
+// Void return type - function doesn't return a value
+function log(message: string): void {
+  console.log(message);
 }
 
-function completeOrder(orderId) {
-  const order = orderQueue.find((order) => order.id === orderId);
-  order.status = "completed";
-  return order;
+// The 'unknown' type is similar to 'any' but safer
+// as it requires type checking before operations
+let notSure: unknown = 4;
+// notSure.toFixed(); // Error: Object is of type 'unknown'
+if (typeof notSure === "number") {
+  notSure.toFixed(); // OK
 }
 
-addNewPizza({ name: "Chicken Bacon Ranch", cost: 12 });
-addNewPizza({ name: "BBQ Chicken", cost: 12 });
-addNewPizza({ name: "Spicy Sausage", cost: 11 });
-
-placeOrder("Chicken Bacon Ranch");
-completeOrder("1");
-
-console.log("Menu:", menu);
-console.log("Cash in register:", cashInRegister);
-console.log("Order queue:", orderQueue);
+// Never type - for functions that never return or always throw exceptions
+function error(message: string): never {
+  throw new Error(message);
+}
